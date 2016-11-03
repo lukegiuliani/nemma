@@ -4,6 +4,8 @@ import urllib
 from urllib.parse import urlparse
 import os
 
+import progressbar
+
 from bs4 import BeautifulSoup
 import wget 
 
@@ -26,7 +28,10 @@ def download_path(nemweb_path, destination_folder):
 	if not os.path.exists(final_destination_folder):
 	  os.makedirs(final_destination_folder)
 
-	for link in soup.find_all('a'):
+	anchors = soup.find_all('a')
+	bar = progressbar.ProgressBar(redirect_stdout=True)
+	
+	for link in bar(anchors, len(anchors)):
 	    
 		href = link.get('href')
 
@@ -38,12 +43,17 @@ def download_path(nemweb_path, destination_folder):
 
 			dest_filename = final_destination_folder + "/" + href.split('/')[-1]
 
-			print("Downloading %s to %s." % (href.split('/')[-1], final_destination_folder))
+			if os.path.exists(dest_filename):
+				print("Skipping %s, it already exists." % href.split('/')[-1])
 
-			response = requests.get(full_url, stream=True)
-			with open(dest_filename, 'wb') as out_file:
-			    shutil.copyfileobj(response.raw, out_file)
-			del response
+			else:
+				print("Downloading %s to %s." % (href.split('/')[-1], final_destination_folder))
+
+				response = requests.get(full_url, stream=True)
+				with open(dest_filename, 'wb') as out_file:
+				   shutil.copyfileobj(response.raw, out_file)
+				del response
+
 
 def download_current_and_archive(slug):
 	download_path("http://www.nemweb.com.au/Reports/CURRENT/" + slug + "/", "Current/" + slug)
@@ -51,8 +61,7 @@ def download_current_and_archive(slug):
 
 # uncomment one of these to download the associated assets. 
 
-#categories = ["Adjusted_Prices_Reports", "Public_Prices", "Yesterdays_Bids_Reports"]
-#categories = ["HistDemand", "Market_Notice", "Next_Day_Offer_Energy", "SEVENDAYOUTLOOK_FULL", "Yesterdays_MNSPBids_Reports", "SupplyDemand"]
+categories = ["Adjusted_Prices_Reports", "Public_Prices", "Yesterdays_Bids_Reports", "HistDemand", "Market_Notice", "Next_Day_Offer_Energy", "SEVENDAYOUTLOOK_FULL", "Yesterdays_MNSPBids_Reports", "SupplyDemand"]
 
 for cat in categories:
 	download_current_and_archive(cat)
