@@ -1,0 +1,2 @@
+[database]
+dbstring=postgresql+pg8000://username:password@localhost/dbname
