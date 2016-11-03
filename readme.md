@@ -18,7 +18,7 @@ Edit the `categories` array at the bottom of the file, then run using `python3 g
 
 Does what it says on the packet. Assumes you have downloaded stuff using dothenem.py. Gives some nice progress bars for fun. Note that committing the data currently takes 2x the extraction and loading :/.
 
-Also note that for now it just trucates the database each run, so each time you are importing everything again :-o!
+Also note that for now it just trucates the database each run, so each time you are importing everything again 😮!
 
 ### Usage
 
