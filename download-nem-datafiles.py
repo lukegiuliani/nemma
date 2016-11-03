@@ -49,6 +49,8 @@ def download_current_and_archive(slug):
 	download_path("http://www.nemweb.com.au/Reports/CURRENT/" + slug + "/", "Current/" + slug)
 	download_path("http://www.nemweb.com.au/REPORTS/ARCHIVE/" + slug + "/", "Archive/" + slug)
 
+# uncomment one of these to download the associated assets. 
+
 #categories = ["Adjusted_Prices_Reports", "Public_Prices", "Yesterdays_Bids_Reports"]
 #categories = ["HistDemand", "Market_Notice", "Next_Day_Offer_Energy", "SEVENDAYOUTLOOK_FULL", "Yesterdays_MNSPBids_Reports", "SupplyDemand"]
 
