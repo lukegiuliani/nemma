@@ -24,7 +24,7 @@ def download_state(state):
 	if not os.path.exists(final_destination_folder):
 	  os.makedirs(final_destination_folder)
 
-	for year in range(1998, 2015):
+	for year in range(1998, 2016):
 		innerbar = progressbar.ProgressBar(redirect_stdout=True)
 		for month in innerbar(range(12)):
 
