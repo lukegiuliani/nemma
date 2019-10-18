@@ -4,7 +4,7 @@ numpy==1.11.1
 pg8000==1.10.6
 progressbar2==3.10.1
 python-utils==2.0.0
-requests==2.11.1
+requests==2.20.0
 scipy==0.18.0
 six==1.10.0
 SQLAlchemy==1.1.3
