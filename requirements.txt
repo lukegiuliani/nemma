@@ -1,6 +1,6 @@
 beautifulsoup4==4.5.1
 configparser==3.5.0
-numpy==1.11.1
+numpy==1.21.0
 pg8000==1.10.6
 progressbar2==3.10.1
 python-utils==2.0.0
